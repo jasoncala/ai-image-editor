@@ -7,6 +7,7 @@ import { useLayerStore } from "@/lib/layer-store"
 import ActiveImage from "./active-image"
 import UploadForm from "./upload/upload-form"
 import ImageTools from "./toolbar/image-toolbar"
+import Loading from "./loading"
 
 export default function Editor() {
     const activeLayer = useLayerStore((state) => state.activeLayer)
@@ -20,6 +21,7 @@ export default function Editor() {
                     {activeLayer.resourceType === "image" ? <ImageTools /> : null}
                 </div>
             </div>
+            <Loading/>
             <UploadForm/>
             <ActiveImage/>
             <Layers/>
