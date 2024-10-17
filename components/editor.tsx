@@ -4,6 +4,7 @@ import { ModeToggle } from "@/components/theme/mode-toggle"
 import Layers from "./layers/layers"
 import UploadImage from "./upload/upload-image"
 import { useLayerStore } from "@/lib/layer-store"
+import ActiveImage from "./active-image"
 
 export default function Editor() {
     const activeLayer = useLayerStore((state) => state.activeLayer)
@@ -15,6 +16,7 @@ export default function Editor() {
                 </div>
             </div>
             <UploadImage/>
+            <ActiveImage/>
             <Layers/>
         </div>
     )

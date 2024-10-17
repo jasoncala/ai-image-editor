@@ -5,15 +5,14 @@ import { UploadApiResponse, v2 as cloudinary } from "cloudinary"
 import z from "zod"
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET,
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 })
 
 const formData = z.object({
-    image: z.instanceof(FormData),
+  image: z.instanceof(FormData),
 })
-
 type UploadResult =
   | { success: UploadApiResponse; error?: never }
   | { error: string; success?: never }
@@ -21,10 +20,9 @@ type UploadResult =
 export const uploadImage = actionClient
   .schema(formData)
   .action(async ({ parsedInput: { image } }): Promise<UploadResult> => {
-    console.log(image)
     const formImage = image.get("image")
 
-    if (!formImage) return { error: "No image provided" }
+    if (!formImage) return { error: "No image was provided" }
     if (!image) return { error: "No image provided" }
 
     const file = formImage as File
@@ -37,9 +35,6 @@ export const uploadImage = actionClient
         const uploadStream = cloudinary.uploader.upload_stream(
           {
             upload_preset: process.env.CLOUDINARY_NAME,
-            use_filename: true,
-            unique_filename: false,
-            filename_override: file.name,
           },
           (error, result) => {
             if (error || !result) {
