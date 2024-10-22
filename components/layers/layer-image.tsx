@@ -1,7 +1,10 @@
-"use client"
+"use client";
 
-import { Layer } from "@/lib/layer-store"
-import Image from "next/image"
+import { Layer } from "@/lib/layer-store";
+import Image from "next/image";
+
+// Helper function to replace 'http://' with 'https://'
+const getSecureUrl = (url: string) => url.replace(/^http:\/\//i, 'https://');
 
 export default function LayerImage({ layer }: { layer: Layer }) {
   if (layer.url && layer.name)
@@ -11,16 +14,20 @@ export default function LayerImage({ layer }: { layer: Layer }) {
           <Image
             className="w-full object-contain h-full rounded-sm"
             alt={layer.name}
-            src={layer.format === "mp4" ? layer.poster || layer.url : layer.url}
+            src={
+              layer.format === "mp4"
+                ? getSecureUrl(layer.poster || layer.url)
+                : getSecureUrl(layer.url)
+            }
             width={50}
             height={50}
           />
         </div>
         <div>
-          <p className="text-xs">{`${layer.name?.slice(0, 15)}.${
-            layer.format
-          }`}</p>
+          <p className="text-xs">
+            {`${layer.name?.slice(0, 15)}.${layer.format}`}
+          </p>
         </div>
       </>
-    )
+    );
 }
