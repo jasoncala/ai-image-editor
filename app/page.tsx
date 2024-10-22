@@ -1,8 +1,11 @@
 "use client"
 
-import Editor from "@/components/editor"
 import { LayerStore } from "@/lib/layer-store"
 import { ImageStore } from "@/lib/image-store"
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('@/components/editor'), { ssr: false });
+
 export default function Home() {
   return (
     <ImageStore.Provider
@@ -29,5 +32,5 @@ export default function Home() {
         <Editor />
       </LayerStore.Provider>
     </ImageStore.Provider>
-  )
+  );
 }
