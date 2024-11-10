@@ -14,6 +14,8 @@ This app has the following functionalities:
 
 ## Notes
 
+Currently buggy due to API used (only works well on already AI images)..
+
 This project was created for learning purposes. Technologies used include Next.js, Typescript, Zustand, Tailwind CSS, React, Cloudinary, etc.
 
 ## License
