@@ -2,7 +2,7 @@
 
 ## *Jason Cala*
 
-**AI Image Editor** allows for generative AI changes on pictures.
+**AI Image Editor** allows for generative AI changes on pictures. Hosted at https://ai-image-editor-ten.vercel.app/
 
 ## Functionality
 
